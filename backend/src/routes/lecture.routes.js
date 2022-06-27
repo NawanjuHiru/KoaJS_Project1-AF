@@ -1,10 +1,11 @@
 const Router = require("@koa/router");
-const { saveLecture } = require("../api/lecture.api");
+const { saveLecture, updateLecture } = require("../api/lecture.api");
 
 const router = new Router({
     prefix:"/lecture",
 });
 
 router.post("/",saveLecture);
+router.put("/",updateLecture);
 
 module.exports = Router;
