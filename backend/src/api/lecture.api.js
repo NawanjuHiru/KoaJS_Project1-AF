@@ -111,4 +111,16 @@ const getLectureDetails = async (ctx) => {
     }
 };
 
-module.exports = { saveLecture , updateLecture , deleteLecture, getLectureDetails }
+const getLectureById = async (ctx) => {
+    try {
+        const lectureId = ctx.params.id;
+
+        const lecture = await Lecture.findById(lectureId);
+
+        return (ctx.body = lecture);
+    } catch (error) {
+
+    }
+};
+
+module.exports = { saveLecture , updateLecture , deleteLecture , getLectureDetails , getLectureById }

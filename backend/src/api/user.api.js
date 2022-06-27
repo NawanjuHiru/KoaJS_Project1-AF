@@ -98,4 +98,16 @@ const getUserDetails = async (ctx) => {
     }
 };
 
-module.exports = {saveUser , updateUser , deleteUser , getUserDetails }
+const getUserById = async (ctx) => {
+    try {
+        const userId = ctx.params.id;
+
+        const user = await User.findById(userId);
+
+        return (ctx.body = user);
+    } catch (error) {
+
+    }
+};
+
+module.exports = {saveUser , updateUser , deleteUser , getUserDetails , getUserById }

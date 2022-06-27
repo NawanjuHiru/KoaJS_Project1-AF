@@ -109,4 +109,16 @@ const getFacultyDetails = async (ctx) => {
     }
 };
 
-module.exports = { saveFaculty , updateFaculty , deleteFaculty , getFacultyDetails }
+const getFacultyById = async (ctx) => {
+    try {
+        const facultyId = ctx.params.id;
+
+        const faculty = await Faculty.findById(facultyId);
+
+        return (ctx.body = faculty);
+    } catch (error) {
+
+    }
+};
+
+module.exports = { saveFaculty , updateFaculty , deleteFaculty , getFacultyDetails , getFacultyById }

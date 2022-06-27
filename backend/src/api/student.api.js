@@ -117,4 +117,16 @@ const getStudentDetails = async (ctx) => {
     }
 };
 
-module.exports = { saveStudent , updateStudent , deleteStudent , getStudentDetails } 
+const getStudentById = async (ctx) => {
+    try {
+        const studentId = ctx.params.id;
+
+        const student = await Student.findById(studentId);
+
+        return (ctx.body = student);
+    } catch (error) {
+
+    }
+};
+
+module.exports = { saveStudent , updateStudent , deleteStudent , getStudentDetails , getStudentById } 

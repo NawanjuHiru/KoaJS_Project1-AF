@@ -105,4 +105,16 @@ const getCourseDetails = async (ctx) => {
     }
 };
 
-module.exports = {saveCourse , updateCourse , deleteCourse , getCourseDetails }
+const getCourseById = async (ctx) => {
+    try {
+        const courseId = ctx.params.id;
+
+        const course = await Course.findById(courseId);
+
+        return (ctx.body = course);
+    } catch (error) {
+
+    }
+};
+
+module.exports = {saveCourse , updateCourse , deleteCourse , getCourseDetails , getCourseById }
