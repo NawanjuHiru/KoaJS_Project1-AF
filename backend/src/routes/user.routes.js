@@ -7,4 +7,4 @@ const router = new Router({
 
 router.post("/",saveUser);
 
-module.exports = router;
+module.exports = Router;
