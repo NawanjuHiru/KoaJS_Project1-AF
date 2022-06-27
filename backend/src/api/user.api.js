@@ -22,7 +22,7 @@ const saveUser = async (ctx) => {
                 isSuccess : true,
                 message : "User Saved Successfully."
             });
-    }catch (error) {
+    }  catch (error) {
         return (ctx.body = 
             {
                 isSuccess : false,
