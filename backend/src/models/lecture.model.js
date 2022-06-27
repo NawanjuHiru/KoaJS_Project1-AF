@@ -23,7 +23,7 @@ const lectureSchema = new Schema({
         required: true,
     },
 
-    isLceture: {
+    isLecture: {
         type: Boolean,
         required: false,
         default: false,
