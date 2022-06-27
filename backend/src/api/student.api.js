@@ -29,7 +29,7 @@ const saveStudent = async (ctx) => {
                 message : "Student saved successfully."
             });
 
-    } catch {
+    } catch (error) {
         
         return (ctx.body = 
             {
