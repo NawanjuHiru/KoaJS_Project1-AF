@@ -2,7 +2,7 @@ const Router = require("@koa/router");
 const { saveCourse } = require("../api/course.api");
 
 const router = new Router({
-    prefix:"/course"
+    prefix:"/course",
 });
 
 router.post("/",saveCourse);
