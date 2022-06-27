@@ -70,4 +70,24 @@ const updateFaculty = async (ctx) => {
     }
 }
 
-module.exports = { saveFaculty , updateFaculty}
+const deleteFaculty = async (ctx) => {
+    try {
+        const facultyId = ctx.params.id;
+
+        const query = await Faculty.findByIdAndDelete(facultyId);
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Faculty have been deleted sucecessfully."
+            })
+    } catch (error) {
+        return (ctx.body =
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            })
+        }
+}
+
+module.exports = { saveFaculty , updateFaculty , deleteFaculty}

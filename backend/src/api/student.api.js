@@ -78,4 +78,24 @@ const updateStudent = async (ctx) => {
     }
 }
 
-module.exports = { saveStudent , updateStudent}
+const deleteStudent = async (ctx) => {
+    try {
+        const studentId = ctx.params.id;
+
+        const query = await Student.findByIdAndDelete(studentId);
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Student updated successfully."
+            });
+    } catch (error) {
+        return (ctx.body = 
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = { saveStudent , updateStudent , deleteStudent}

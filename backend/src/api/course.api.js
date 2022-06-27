@@ -55,7 +55,7 @@ const updateCourse = async (ctx) => {
         return (ctx.body =
             {
                 isSuccess : true,
-                message : "Course has been uodated successfully."
+                message : "Course has been updated successfully."
             });
     } catch (error) {
         return (ctx.body =
@@ -66,4 +66,24 @@ const updateCourse = async (ctx) => {
     }
 }
 
-module.exports = {saveCourse , updateCourse}
+const deleteCourse = async (ctx) => {
+    try {
+        const courseId = ctx.params.id;
+
+        const query = await Course.findByIdAndDelete(courseId);
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Course has been deleted successfully."
+            });
+    } catch (error) {
+        return (ctx.body =
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = {saveCourse , updateCourse , deleteCourse}

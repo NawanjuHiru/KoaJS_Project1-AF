@@ -60,4 +60,24 @@ const updateUser = async (ctx) => {
     }
 }
 
-module.exports = {saveUser , updateUser}
+const deleteUser = async (ctx) => {
+    try {
+        const userId = ctx.params.id;
+
+        const query = await User.findByIdAndDelete(userId);
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "User deleted Successfully."
+            });
+    } catch (error) {
+        return (ctx.body = 
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = {saveUser , updateUser , deleteUser}

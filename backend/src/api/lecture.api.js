@@ -72,4 +72,24 @@ const updateLecture = async (ctx) => {
     }
 }
 
-module.exports = { saveLecture , updateLecture}
+const deleteLecture = async (ctx) => {
+    try {
+        const lectureId = ctx.params.id;
+
+        const query = await Lecture.findByIdAndDelete(lectureId);
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Lecture has been deleted successfully."
+            });
+    } catch (error) {
+        return (ctx.body =
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = { saveLecture , updateLecture , deleteLecture}
