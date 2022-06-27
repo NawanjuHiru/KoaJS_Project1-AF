@@ -1,5 +1,5 @@
 const Router = require("@koa/router");
-const { saveUser, updateUser } = require("../api/user.api");
+const { saveUser, updateUser, deleteUser } = require("../api/user.api");
 
 const router = new Router({
     prefix:"/user",
@@ -7,5 +7,6 @@ const router = new Router({
 
 router.post("/",saveUser);
 router.put("/",updateUser);
+router.delete("/:id",deleteUser);
 
 module.exports = Router;

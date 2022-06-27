@@ -1,5 +1,5 @@
 const Router = require("@koa/router");
-const { saveCourse, updateCourse } = require("../api/course.api");
+const { saveCourse, updateCourse, deleteCourse } = require("../api/course.api");
 
 const router = new Router({
     prefix:"/course",
@@ -7,5 +7,6 @@ const router = new Router({
 
 router.post("/",saveCourse);
 router.put("/",updateCourse);
+router.delete("/:id",deleteCourse);
 
 module.exports = Router;
