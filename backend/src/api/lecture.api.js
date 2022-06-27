@@ -34,7 +34,7 @@ const saveLecture = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const updateLecture = async (ctx) => {
     try {
@@ -70,7 +70,7 @@ const updateLecture = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const deleteLecture = async (ctx) => {
     try {
@@ -90,6 +90,25 @@ const deleteLecture = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
-module.exports = { saveLecture , updateLecture , deleteLecture}
+const getLectureDetails = async (ctx) => {
+    try {
+        const { searchText } = ctx.request.body;
+
+        if (searchText === "") {
+            const lectureDetails = await Lecture.find().exec();
+
+            return (ctx.body = lectureDetails);
+        } else {
+            const lectureDetails = await Lecture.find({fullName: searchText});
+
+            return (ctx.body = lectureDetails);
+        }
+
+    } catch (error) {
+
+    }
+};
+
+module.exports = { saveLecture , updateLecture , deleteLecture, getLectureDetails }

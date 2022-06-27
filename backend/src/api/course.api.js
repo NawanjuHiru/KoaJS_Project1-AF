@@ -31,7 +31,7 @@ const saveCourse = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const updateCourse = async (ctx) => {
     try {
@@ -64,7 +64,7 @@ const updateCourse = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const deleteCourse = async (ctx) => {
     try {
@@ -84,6 +84,25 @@ const deleteCourse = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
-module.exports = {saveCourse , updateCourse , deleteCourse}
+const getCourseDetails = async (ctx) => {
+    try {
+        const { searchText } = ctx.request.body;
+
+        if(searchText === ""){
+            const courseDetails = await Course.find().exec();
+
+            return (ctx.body = courseDetails);
+        } else {
+            const courseDetails = await Course.find({course: searchText});
+
+            return (ctx.body = courseDetails);
+        }
+
+    } catch (error) {
+
+    }
+};
+
+module.exports = {saveCourse , updateCourse , deleteCourse , getCourseDetails }

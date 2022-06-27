@@ -33,7 +33,7 @@ const saveFaculty = async (ctx) => {
                 message : "Error has been occured. Please try again."
             })
     }
-}
+};
 
 const updateFaculty = async (ctx) => {
     try {
@@ -68,7 +68,7 @@ const updateFaculty = async (ctx) => {
                 message : "Error has been occured. Please try again."
             })
     }
-}
+};
 
 const deleteFaculty = async (ctx) => {
     try {
@@ -88,6 +88,25 @@ const deleteFaculty = async (ctx) => {
                 message : "Error has been occured. Please try again."
             })
         }
-}
+};
 
-module.exports = { saveFaculty , updateFaculty , deleteFaculty}
+const getFacultyDetails = async (ctx) => {
+    try {
+        const { searchText } = ctx.request.body;
+
+        if (searchText === "") {
+            const facultyDetails = await Faculty.find().exec();
+
+            return (ctx.body = facultyDetails);
+        } else {
+            const facultyDetails = await Faculty.find({facultyName: searchText});
+
+            return (ctx.body = facultyDetails);
+        }
+
+    } catch (error) {
+
+    }
+};
+
+module.exports = { saveFaculty , updateFaculty , deleteFaculty , getFacultyDetails }

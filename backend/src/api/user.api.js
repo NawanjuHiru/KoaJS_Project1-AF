@@ -29,7 +29,7 @@ const saveUser = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const updateUser = async (ctx) => {
     try {
@@ -58,7 +58,7 @@ const updateUser = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
 const deleteUser = async (ctx) => {
     try {
@@ -78,6 +78,24 @@ const deleteUser = async (ctx) => {
                 message : "Error has been occured. Please try again."
             });
     }
-}
+};
 
-module.exports = {saveUser , updateUser , deleteUser}
+const getUserDetails = async (ctx) => {
+    try {
+        const { searchText } = ctx.request.body;
+
+        if (searchText === "") {
+            const userDetails = await User.find().exec();
+
+            return (ctx.body = userDetails);
+        } else {
+            const userDetails = await User.find({fullName: searchText});
+
+            return (ctx.body = userDetails);
+        }
+    } catch (error) {
+
+    }
+};
+
+module.exports = {saveUser , updateUser , deleteUser , getUserDetails }
