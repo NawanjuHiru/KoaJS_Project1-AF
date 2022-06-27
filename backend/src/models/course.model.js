@@ -4,15 +4,13 @@ const { Schema } = mongoose;
 const courseSchema = new Schema({
      
     faculty: {
-        type: Boolean,
-        required: false,
-        default: false,
+        type: String,
+        required: true,
     },
 
     course: {
-        type: Boolean,
-        required: false,
-        default: false,
+        type: String,
+        required: true,
     },
 
     fee: {
