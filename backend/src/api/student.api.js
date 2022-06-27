@@ -39,4 +39,43 @@ const saveStudent = async (ctx) => {
     }
 }
 
-module.exports = { saveStudent }
+const updateStudent = async (ctx) => {
+    try {
+        const {
+            id,
+            registerNumber,
+            fullName,
+            email,
+            address,
+            enrollmentYear,
+            faculty,
+            course
+        } = ctx.request.body;
+
+        const student = await Student.findByIdAndUpdate(id,{
+            registerNumber : registerNumber,
+            fullName : fullName,
+            email : email,
+            address : address,
+            enrollmentYear : enrollmentYear,
+            faculty : faculty,
+            course : course
+        });
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Student updated successfully."
+            });
+
+    } catch (error) {
+        
+        return (ctx.body = 
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = { saveStudent , updateStudent}
