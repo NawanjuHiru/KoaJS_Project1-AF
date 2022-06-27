@@ -33,4 +33,37 @@ const saveCourse = async (ctx) => {
     }
 }
 
-module.exports = {saveCourse}
+const updateCourse = async (ctx) => {
+    try {
+        const {
+            id,
+            faculty,
+            course,
+            fee,
+            startDate,
+            reviewDate
+        } = ctx.request.body;
+
+        const Course = await Course.findByIdAndUpdate(id,{
+            faculty : faculty,
+            course : course,
+            fee : fee,
+            startDate : startDate,
+            reviewDate : reviewDate,
+        });
+
+        return (ctx.body =
+            {
+                isSuccess : true,
+                message : "Course has been uodated successfully."
+            });
+    } catch (error) {
+        return (ctx.body =
+            {
+                isSuccess : false,
+                message : "Error has been occured. Please try again."
+            });
+    }
+}
+
+module.exports = {saveCourse , updateCourse}
